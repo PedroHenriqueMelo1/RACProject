@@ -2,7 +2,10 @@ const Express = require('express')
 const  App = Express()
 const MessageSystem = require('../Controller/ControllReturn')
 const PORT = 3333
-const InsertRoutesOnServer = require('./router/Routers')
+const InsertRoutesOnServer = require('./Router')
+
+App.use(Express.json());
+
 
 const ListenServer = () => {
     return new Promise((resolve, reject) => {

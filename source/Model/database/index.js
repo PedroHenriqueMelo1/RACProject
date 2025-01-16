@@ -7,7 +7,7 @@ async function OpenConnection() {
             console.log(err)
         }
          else {
-            console.log(`Banco de dados criado com sucesso!`)
+            
          }
     })
 
