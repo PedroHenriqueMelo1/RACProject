@@ -1,11 +1,7 @@
-const OpenConnection = require('../../../Model/database/index')
 const express = require('express') 
 const App = express()
-const MessageSystem = require('../../../Controller/ControllReturn')
-const QueryUtils = require('../../../Controller/QueryDatabase')
-
-
-
+const MessageSystem = require('../../../../Controller/ControllReturn')
+const QueryUtils = require('../../../../Controller/QueryDatabase')
 
 
 
@@ -20,7 +16,7 @@ App.get('', async (req,response) => {
    } else {
      
 
-          const SearchUserInDataBase = await  DatabaseUtils.CheckDataBaseData(Email)
+          const SearchUserInDataBase = await  DatabaseUtils.VerifyEmailAlreadyExists(Email)
 
             response.send(SearchUserInDataBase)
 

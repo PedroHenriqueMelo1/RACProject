@@ -1,9 +1,8 @@
-const OpenConnection = require('../../../Model/database/index')
 const express = require('express') 
 const App = express()
-const MessageSystem = require('../../../Controller/ControllReturn')
-const QueryUtils = require('../../../Controller/QueryDatabase')
-const { ERROR } = require('sqlite3')
+const MessageSystem = require('../../../../Controller/ControllReturn')
+const QueryUtils = require('../../../../Controller/QueryDatabase')
+
 
 
 
@@ -20,19 +19,26 @@ App.post('', async(req, response) => {
    } 
    else {
 
-   const SearchUserInDataBase =  await DatabaseUtils.CheckDataBaseData(Email)
-    console.log(SearchUserInDataBase)     
+   const SearchUserInDataBase =  await DatabaseUtils.VerifyEmailAlreadyExists(Email)
 
         if(SearchUserInDataBase.reason !== 'UserNotFound') {
             MessageSystem.SendResponseToClient({error: false, message: 'UserAlreadyExists', status: 409}, response)
          } 
          else {
+            const StructuredDataToQuery = {
+                email: Email,
+                senha: Password,
+                usuario: User,
+                telefone: Number,
+                unidade: Unidade,
+                cargo_hierarquia: perfildeacesso
+            }
          
-          const InsertResult =  await DatabaseUtils.CreateARowInDataBase(Email,Password, User,Number,Unidade,perfildeacesso)
+          const InsertResult =  await DatabaseUtils.CreateARowInDataBase(DatabaseUtils.AnalyseParamsAndReturnQuery('User', StructuredDataToQuery, 'Insert'))
             if(InsertResult.error !== false) {
                 MessageSystem.SendResponseToClient({error: true, message: 'UserNotDeleted', status: 404}, response)
             } else {
-                MessageSystem.SendResponseToClient({error: false, message:'UserCreated', status: 201}, response)
+                MessageSystem.SendResponseToClient({error: false, message:'RegisterCreated', status: 201}, response)
             }
          }    
    }

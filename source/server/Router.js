@@ -1,12 +1,22 @@
 
-const MethodGetDatabaseEndPoint = require('../server/routes/EndPointDataBases/GetDataBase')
-const MethodInsertDatabaseEndpoint = require('../server/routes/EndPointDataBases/Insert')
-const MethodDeleteDataBaseEndPoint = require('../server/routes/EndPointDataBases/Delete')
+const MethodGetDatabaseEndPoint = require('./routes/EndPointDataBases/Users/GetDataBase')
+const MethodInsertDatabaseEndpoint = require('./routes/EndPointDataBases/Users/InsertUser')
+const MethodDeleteDataBaseEndPoint = require('./routes/EndPointDataBases/Users/DeleteUser')
+const MethodPutDataBaseEndpoint = require('./routes/EndPointDataBases/Users/PutUser')
+const MethodGetUnidadesEndpoint = require('./routes/EndPointDataBases/Unidade/GetUnidade')
+const MethodPostUnidadesEndpoint = require('./routes/EndPointDataBases/Unidade/InsertUnidade')
+const MethodDeleteUnidadesEndpoint = require('./routes/EndPointDataBases/Unidade/Deleteunidade')
+
 
 function InsertRoutesOnServer(Server) {
-   Server.use('/endpoint/db/getData', MethodGetDatabaseEndPoint)
-   Server.use('/endpoint/db/InsertUser', MethodInsertDatabaseEndpoint)
-   Server.use('/endpoint/db/DeleteUser/', MethodDeleteDataBaseEndPoint)
+   Server.use('/endpoint/db/user', MethodGetDatabaseEndPoint)
+   Server.use('/endpoint/db/user', MethodInsertDatabaseEndpoint)
+   Server.use('/endpoint/db/user', MethodDeleteDataBaseEndPoint)
+   Server.use('/endpoint/db/user', MethodPutDataBaseEndpoint)
+   Server.use('/endpoint/db/unidades', MethodGetUnidadesEndpoint),
+   Server.use('/endpoint/db/unidades', MethodPostUnidadesEndpoint),
+   Server.use('/endpoint/db/unidades', MethodDeleteUnidadesEndpoint)
+
 }
 
 module.exports = InsertRoutesOnServer
