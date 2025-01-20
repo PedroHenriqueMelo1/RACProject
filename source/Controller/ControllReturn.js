@@ -11,7 +11,7 @@ class MessageSystem {
  } 
   static SendResponseToClient(Response, ReturnRouter = null) {
     if(Response.error == true) {
-       ReturnRouter.status(Response.status).json({error: 'true', message: Response.message})
+       ReturnRouter.status(Response.status).json({error: 'true', message: Response.message, details: Response.message || 'Não atribuido'})
     } else {
       ReturnRouter.status(Response.status).json({Response})
     }

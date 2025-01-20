@@ -1,7 +1,7 @@
 const express = require('express') 
 const App = express()
 const MessageSystem = require('../../../../Controller/ControllReturn')
-const QueryUtils = require('../../../../Controller/QueryDatabase')
+const QueryUtils = require('../../../../Controller/SQLDatabaseCRUD')
 
 
 App.delete('', async(req, response) => { 
@@ -13,19 +13,24 @@ App.delete('', async(req, response) => {
         MessageSystem.SendResponseToClient({error: true, message: 'Bad Request, Missing Params', status: 400}, response)
    } else {
 
-    const SearchUserInDataBase =  await DatabaseUtils.CheckDataBaseData(Email)
-  
+    const SearchUnidadeInDatabase =  await DatabaseUtils.VerifyUnidadeAlreadyExists(codigo_unidade)
+     
 
-        if(SearchUserInDataBase.reason !== 'UserFound') {
-            MessageSystem.SendResponseToClient({error: false, message: 'UserNotFound', status: 409}, response)
+        if(SearchUnidadeInDatabase.reason !== 'Found') {
+            MessageSystem.SendResponseToClient({error: false, message: 'UnidadeNotFound', status: 409}, response)
          } 
          else {
-            const DeleteQuery = await DatabaseUtils.DeleteARowInDatabase(codigo_unidade, unidades)
+            const DeleteQuery = await DatabaseUtils.DeleteARowInDatabase(codigo_unidade, 'unidades', 'codigo_unidade').catch((err) => {
+                  
+            
+                return err
+            })
+
 
             if(DeleteQuery.error !== false) {
-                MessageSystem.SendResponseToClient({error: true, message: 'UnidadeDeleted', status: 404}, response)
+                MessageSystem.SendResponseToClient({error: true, message: 'UnidadeNotDeleted', status: 40, details: DeleteQuery.details}, response)
             } else {
-                MessageSystem.SendResponseToClient({error: false, message:'UnidadeNotDeleted', status: 200}, response)
+                MessageSystem.SendResponseToClient({error: false, message:'UnidadeDeleted', status: 200}, response)
             }
          }
    }

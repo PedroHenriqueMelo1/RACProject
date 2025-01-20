@@ -1,8 +1,8 @@
 const OpenConnection = require('../Model/database')
-const MessageSystem = require('../Controller/ControllReturn')
+const MessageSystem = require('./ControllReturn')
 
 
-class GetOperations {
+    class GetOperations {
     
 
     constructor() {
@@ -89,7 +89,24 @@ class GetOperations {
                return Result
            }
        
-        
+    async GetAnythingIntoATable(column, value, table) {
+        const Database = await OpenConnection()
+
+        try {
+            return new Promise((resolve, reject) => {
+                Database.get(`SELECT * from ${table} WHERE ${column} VALUES = ?`, [value], (err, row) => {
+                    if(err) {
+                        reject('Error')
+                    } else {
+
+                    }
+                } )
+            })
+        }
+        catch(err) {
+
+        }
+    }
      
 
      async VerifyCredentialsBeforeAcess() {
@@ -163,14 +180,14 @@ catch(err) {
 }
     }
     
-    async DeleteARowInDatabase(Data, Table) {
+    async DeleteARowInDatabase(Data, Table, column) {
         const Database = await OpenConnection()
 
      
             return new Promise((resolve,reject) => {
-             Database.run(`DELETE FROM  WHERE ${Table} = ?`, [Data], (err) => {
+             Database.run(`DELETE FROM ${Table} WHERE ${column} = ?`, [Data], (err) => {
                 if(err) {
-                    reject({error: true, reason:'UnableToDelete'})
+                    reject({error: true, reason:'UnableToDelete', details: err})
                 }
                 else {
                     resolve({error: false, reason:'RegisterDeleted'})
@@ -189,8 +206,8 @@ catch(err) {
                 console.log(Params);
         
                 // Corrigindo a forma de concatenar a query e passando o array de valores corretamente.
-                const query = `UPDATE usuarios SET ${Params.Column} = ? WHERE email = ?`;
-                Database.run(query, [Params.NewValue, Params.email], (err) => {
+                const query = `UPDATE ${table} SET ${Params.Column} = ? WHERE ${Params.PK} = ?`;
+                Database.run(query, [Params.NewValue, Params.PKValue], (err) => {
                     if (err) {
                         reject({ error: true, reason: 'UnableToPut' });
                     } else {
@@ -208,4 +225,4 @@ catch(err) {
 
 
 
-module.exports = QueryUtils
+module.exports = {QueryUtils}

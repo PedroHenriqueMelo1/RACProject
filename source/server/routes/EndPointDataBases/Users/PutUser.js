@@ -1,7 +1,7 @@
 const express = require('express') 
 const App = express()
 const MessageSystem = require('../../../../Controller/ControllReturn')
-const QueryUtils = require('../../../../Controller/QueryDatabase')
+const QueryUtils = require('../../../../Controller/SQLDatabaseCRUD')
 
 
 
@@ -22,7 +22,7 @@ App.put('', async (req, response) => {
            MessageSystem.SendResponseToClient({error: false, message: 'UserDontExists', status: 409}, response)
         } 
         else { 
-          const PutDateQuery = await  DatabaseUtils.PutRowInDatabase({email: Email, Column: column, NewValue: value})
+          const PutDateQuery = await  DatabaseUtils.PutRowInDatabase({email: Email, Column: column, NewValue: value}, 'usuarios')
 
           if(PutDateQuery.error == true) {
             MessageSystem.SendResponseToClient({error:true, message:'UnableToPut', status: 401}, response)
