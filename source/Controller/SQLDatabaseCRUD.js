@@ -1,6 +1,56 @@
+
 const OpenConnection = require('../Model/database')
 const MessageSystem = require('./ControllReturn')
 
+class QueryUtils {
+    TypeQ 
+    Params 
+    constructor(query, ...params) {
+        
+       this.TypeQ = query
+       this.Params = params
+    }   
+     AnalyseParamsAndReturnQuery(tabela, Data, Method) {
+        const Methods = {
+            'INSERT': () => {
+                const Query = `INSERT INTO ${tabela} (${Object.keys(Data).join(',')}) VALUES (${Object.keys(Data).map(() => '?').join(',')})`;
+                return Query
+            },
+           
+        }
+
+         if(Method == 'insert') {
+            
+            return Methods.INSERT()
+           
+         }
+  
+
+    }
+
+
+     VanishQueryParamsBeforeQuery(...params) {
+      
+        for(let param of params) {
+
+          
+            if  (param == null || Object.entries(param) <= 0) {
+    
+                return new MessageSystem()
+            }
+        }
+        return null
+     
+    }
+  
+    
+
+
+      
+        
+
+    
+}
 
     class GetOperations {
     
@@ -113,87 +163,43 @@ const MessageSystem = require('./ControllReturn')
 
      }
     }
+    class InsertOperations extends QueryUtils {
+            constructor(query, params) {
+                super(query, params)
+            }
+         async CreateARowInDataBase(Data, query) {
+            try {
+            const Database = await this.OpenConnection()
 
-
-class QueryUtils  extends GetOperations{
-    TypeQ 
-    Params 
-    constructor(query, ...params) {
-        super()
-       this.TypeQ = query
-       this.Params = params
-    }   
-     AnalyseParamsAndReturnQuery(tabela, Data, Method) {
-        const Methods = {
-            'INSERT': () => {
-                const Query = `INSERT INTO ${tabela} (${Object.keys(Data).join(',')}) VALUES (${Object.keys(Data).map(() => '?').join(',')})`;
-                return Query
-            },
-           
-        }
-
-         if(Method == 'insert') {
-            
-            return Methods.INSERT()
-           
-         }
-  
-
-    }
-
-
-     VanishQueryParamsBeforeQuery(...params) {
+    
       
-        for(let param of params) {
-
-          
-            if  (param == null || Object.entries(param) <= 0) {
+        return new Promise((resolve, reject) => {
     
-                return new MessageSystem()
-            }
-        }
-        return null
-     
-    }
-    async CreateARowInDataBase(Data, query) {
-        try {
-        const Database = await OpenConnection()
-
-  
-    return new Promise((resolve, reject) => {
-
-        Database.run(query, Object.values(Data), (err) => {
-            if(err) {
-                console.log(err)
-                reject({error: true, reason: 'UnableInsert'})
-            }
-            else {
-               resolve({error: false, reason: 'UserCreated'})
-            }
-     })
-
-
-    })
-}
-catch(err) {
-    return { error: true, reason: 'InternalError', details: err.message };
-}
-    }
-    
-    async DeleteARowInDatabase(Data, Table, column) {
-        const Database = await OpenConnection()
-
-     
-            return new Promise((resolve,reject) => {
-             Database.run(`DELETE FROM ${Table} WHERE ${column} = ?`, [Data], (err) => {
+            Database.run(query, Object.values(Data), (err) => {
                 if(err) {
-                    reject({error: true, reason:'UnableToDelete', details: err})
+                    console.log(err)
+                    reject({error: true, reason: 'UnableInsert'})
                 }
                 else {
-                    resolve({error: false, reason:'RegisterDeleted'})
+                   resolve({error: false, reason: 'UserCreated'})
                 }
-             })
-            })
+         })
+    
+    
+        })
+    }
+    catch(err) {
+        return { error: true, reason: 'InternalError', details: err.message };
+    }
+        }
+        
+
+
+    }
+
+    class AlterOperations extends QueryUtils {
+        constructor() {
+            super() 
         }
 
         async PutRowInDatabase(Params, table) {
@@ -216,13 +222,34 @@ catch(err) {
                 });
             });
         }
-        
+    }
 
+    class DeleteOperations extends QueryUtils {
+        constructor() {
+            super()
+        }
+
+        async DeleteARowInDatabase(Data, Table, column) {
+            const Database = await OpenConnection()
     
-}
+         
+                return new Promise((resolve,reject) => {
+                 Database.run(`DELETE FROM ${Table} WHERE ${column} = ?`, [Data], (err) => {
+                    if(err) {
+                        reject({error: true, reason:'UnableToDelete', details: err})
+                    }
+                    else {
+                        resolve({error: false, reason:'RegisterDeleted'})
+                    }
+                 })
+                })
+            }
+    }
+
+
+ 
 
 
 
 
-
-module.exports = {QueryUtils}
+module.exports = {GetOperations, AlterOperations, InsertOperations, DeleteOperations}

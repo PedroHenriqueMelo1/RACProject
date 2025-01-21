@@ -7,7 +7,9 @@ const MethodGetUnidadesEndpoint = require('./routes/EndPointDataBases/Unidade/Ge
 const MethodPostUnidadesEndpoint = require('./routes/EndPointDataBases/Unidade/InsertUnidade')
 const MethodDeleteUnidadesEndpoint = require('./routes/EndPointDataBases/Unidade/Deleteunidade')
 const MethodAlterUnidadesEndPoint = require('./routes/EndPointDataBases/Unidade/AlterUnidade')
-const ViewAdmissaoUsers = require('./routes/EndPointDataBases/AdmissaoEndpoint/View')
+const ViewAdmissaoUsers = require('./routes/EndPointDataBases/Onboarding/View')
+const CreateTokenEndpoint = require('./routes/EndPointDataBases/Onboarding/CreateToken')
+const DeleteTokenEndpoint = require('./routes/EndPointDataBases/Onboarding/DeleteToken')
 
 function InsertRoutesOnServer(Server) {
    Server.use('/endpoint/db/user', MethodGetDatabaseEndPoint)
@@ -18,7 +20,9 @@ function InsertRoutesOnServer(Server) {
    Server.use('/endpoint/db/unidades', MethodPostUnidadesEndpoint),
    Server.use('/endpoint/db/unidades', MethodDeleteUnidadesEndpoint),
    Server.use('/endpoint/db/unidades', MethodAlterUnidadesEndPoint)
-   Server.use('/Admissao',  ViewAdmissaoUsers)
+   Server.use('/onboarding',  ViewAdmissaoUsers),
+   Server.use('/endpoint/db/onboarding/', CreateTokenEndpoint),
+   Server.use('/endpoint/db/onboarding',  DeleteTokenEndpoint)
 
 }
 

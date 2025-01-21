@@ -1,7 +1,7 @@
 const express = require('express') 
 const App = express()
 const MessageSystem = require('../../../../Controller/ControllReturn')
-const QueryUtils = require('../../../../Controller/SQLDatabaseCRUD')
+const {InsertOperations} = require('../../../../Controller/SQLDatabaseCRUD')
 
 
 
@@ -12,7 +12,7 @@ const QueryUtils = require('../../../../Controller/SQLDatabaseCRUD')
 App.post('', async(req, response) => {
 
  const {User, Email, Password, Number, Unidade, perfildeacesso} = req.body
- const DatabaseUtils = new QueryUtils('post')
+ const InsertMethods = new InsertOperations('post')
 
    if(DatabaseUtils.VanishQueryParamsBeforeQuery(User,Email,Password,Number,Unidade,perfildeacesso) instanceof MessageSystem) {
         MessageSystem.SendResponseToClient({error: true, message: 'Bad Request, Missing Params', status: 400}, response)
@@ -34,7 +34,7 @@ App.post('', async(req, response) => {
                 cargo_hierarquia: perfildeacesso
             }
          
-          const InsertResult =  await DatabaseUtils.CreateARowInDataBase(DatabaseUtils.AnalyseParamsAndReturnQuery('User', StructuredDataToQuery, 'Insert'))
+          const InsertResult =  await InsertMethods.CreateARowInDataBase(InsertMethods.AnalyseParamsAndReturnQuery('User', StructuredDataToQuery, 'Insert'))
             if(InsertResult.error !== false) {
                 MessageSystem.SendResponseToClient({error: true, message: 'UserNotDeleted', status: 404}, response)
             } else {
