@@ -10,9 +10,16 @@ class MessageSystem {
   } 
  } 
   static SendResponseToClient(Response, ReturnRouter = null) {
+ if(!ReturnRouter) {
+throw new Error('Missing params for SendResponseToClient: Response')
+ }
+
     if(Response.error == true) {
-       ReturnRouter.status(Response.status).json({error: 'true', message: Response.message, details: Response.message || 'Não atribuido'})
+   
+      Response.status = Response.status ?? 500
+       ReturnRouter.status(Response.status ).json({error: 'true', message: Response.reason, details: Response.details || 'Não atribuido'})
     } else {
+      Response.status = Response.status ?? 201
       ReturnRouter.status(Response.status).json({Response})
     }
   }

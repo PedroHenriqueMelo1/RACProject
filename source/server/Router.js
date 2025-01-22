@@ -1,5 +1,5 @@
 
-const MethodGetDatabaseEndPoint = require('./routes/EndPointDataBases/Users/GetDataBase')
+const MethodGetDatabaseEndPoint = require('./routes/EndPointDataBases/Users/VerifyCredentials')
 const MethodInsertDatabaseEndpoint = require('./routes/EndPointDataBases/Users/InsertUser')
 const MethodDeleteDataBaseEndPoint = require('./routes/EndPointDataBases/Users/DeleteUser')
 const MethodPutDataBaseEndpoint = require('./routes/EndPointDataBases/Users/PutUser')
