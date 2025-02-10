@@ -1,0 +1,292 @@
+* { 
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+.red {
+    color: red;
+}
+
+.white {
+    color: white;
+}
+
+.headercxt {
+background-color: red;
+display: flex;
+align-items: center ;
+justify-content: space-between;
+height: 90px;
+}
+
+.firstParagraf {
+    font-weight: 400;
+    
+    line-height: 1.6;
+    margin-top: 30px;
+}
+
+.logopropiets {
+    margin-left: 20px;
+    width: 180px;
+}
+
+.firstParagraf p{
+    margin-bottom: 15px;
+}
+
+.options {  
+    display: flex;
+    gap: 80px;
+}
+
+.optionsh1 {
+    color: white;
+    font-size: 20px;
+}
+
+.LoginButton {
+    width: 165px;
+    height: 39px;
+    border-radius: 14px;
+    margin-right: 30px;
+    border: none;
+    background: rgba(255, 255, 255, 0.973);
+    color: rgb(255, 0, 0);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 12px rgba(255, 71, 87, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.LoginButton:hover {
+    background: linear-gradient(135deg, #ff4757, #ff6b6b);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(146, 1, 1, 0.582);
+}
+
+    
+.logocarwish {
+    width: 100%;
+    height: 500px;
+}
+
+.containerlogocashwash {
+    position: relative;
+    width: 100%;  /* Faz com que o contêiner ocupe 100% do espaço disponível */
+    height: auto; /* Ajusta a altura conforme necessário */
+}
+.servicosautomotivos {
+    padding-top: 5px;
+    background-color: #EFF4F5;
+}
+
+.redirect-inner {
+    position: absolute;
+    bottom: 70px;  /* Ajuste para um pequeno afastamento do fundo */
+    right: 50px;      /* Ajusta para a direita */
+    transform: translate(0, 0);  /* Remove a centralização */
+    width: 400px;  /* Ajuste o tamanho conforme necessário */
+}
+
+.h1about {
+    margin-top: 10px;
+    text-align: center;
+    color: red;
+    font-size: 25px;
+    letter-spacing: 3px;
+}
+
+.title-about {
+    margin-bottom: 30px;
+}
+
+.about-buttons {
+    
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    gap: 60px;
+    margin-bottom: 20px;
+}
+
+.aboutbutton {
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 16px;
+    padding: 9px 9px;
+    width: 150px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.aboutbutton:hover {
+    background-color: #cc0000; /* Tom mais escuro de vermelho */
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.aboutbutton:active {
+    transform: scale(0.98);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.maintitle {
+    margin-bottom: 20px;
+}
+
+.contentMainAbout {
+    display: flex;
+    width: 75%;
+    height: 500px;
+    padding: 40px;
+    margin: auto;
+    border-top: 1px solid rgba(211, 206, 206, 0.562);
+}
+
+.content, .img {
+    flex: 1;
+}
+
+
+.img img {
+    border-radius: 4px;
+    margin: 40px 30px 40px 120px;
+    width: 75%;
+    height: 75%;
+}
+.servicesgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    gap: 40px;
+    width: 75%; 
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo do card */
+    width: 100%;
+    max-width: 275px; /* Limita a largura máxima */
+    border: 1.5px solid #c7c7c6;
+}
+
+.card h3 {
+    text-align: center;
+    font-size: 20px; /* Tamanho de fonte sem usar rem */
+}
+
+.card img {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.card button {
+    display: block;
+    width: 70%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    border-radius: 16px;
+    border: 0;
+    padding: 12px;
+    background-color: #e7191f;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transições suaves */
+}
+
+.card button:hover {
+    transform: scale(1.05); /* Aumenta o tamanho do botão em 5% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra sutil */
+}
+#stars {
+    width: 60%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center; /* Garante que o #stars esteja centralizado */
+}
+
+.card p {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+
+.footer footer {
+    background-color: #e7191f;
+    width: 100%;
+    padding: 15px 50px 0px 50px;
+
+}
+
+.firstline {
+    margin-bottom: 20px;
+}
+
+.firstline h3 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.secondline {
+    margin-top: 20px;
+    display: flex;
+   justify-content: space-between;
+
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icons img {
+    filter: invert(1);
+    width: 30px;
+    height: 30px;
+}
+
+.servicosagendados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    filter: invert(1);
+    
+}
+
+.servicosagendados img {
+    width: 30px;
+    height: 30px;
+
+}
+
+.align-center {
+    text-align: center;
+}
+
+.threeline p {
+    margin-top: 20px;
+}
+
+.servicosagendados p {
+    font-weight: 600;
+}
