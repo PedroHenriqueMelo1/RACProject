@@ -3,8 +3,13 @@ const  App = Express()
 const MessageSystem = require('../Controller/ControllReturn')
 const PORT = 3333
 const InsertRoutesOnServer = require('./Router')
+const path = require('path')
+
 
 App.use(Express.json());
+
+App.use(Express.static(path.join(__dirname, '..', 'public',)))
+
 
 
 const ListenServer = () => {

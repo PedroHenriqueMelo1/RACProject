@@ -164,12 +164,12 @@ const alffa =  `<ul>
 
     
  const OptionMapContent = {
-    operacao: {Title: '2. OPERAÇÃO', img: './media/AboutImgs/operacao.jpg', context: operacaocontext},
-    gestao: {Title: '3. GESTÃO', img: './media/AboutImgs/gestao.jpg', context: gestaocontext},
+    operacao: {Title: '2. OPERAÇÃO', img: '/LandingPage/media/AboutImgs/operacao.jpg', context: operacaocontext},
+    gestao: {Title: '3. GESTÃO', img: '/LandingPage/media/AboutImgs/gestao.jpg', context: gestaocontext},
     aplicativo: {Title: '4. APLICATIVO', img: '', context: aplicativocontext},
-    reparo: {Title: '5. REPARO', img: './media/AboutImgs/reparô.jpg', context: reparocontext},
-    alffa: {Title: '6. ALFFA', img: './media/AboutImgs/Alffa.jpg', context: alffa},
-    sustentabilidade: {Title: '1. SUSTENTÁVEL', img: './media/AboutImgs/sustentavel.jpg', context: sustentabilidade  } 
+    reparo: {Title: '5. REPARO', img: '/LandingPage/media/AboutImgs/reparô.jpg', context: reparocontext},
+    alffa: {Title: '6. ALFFA', img: '/LandingPage/media/AboutImgs/Alffa.jpg', context: alffa},
+    sustentabilidade: {Title: '1. SUSTENTÁVEL', img: '/LandingPage/media/AboutImgs/sustentavel.jpg', context: sustentabilidade  } 
 
  }
 

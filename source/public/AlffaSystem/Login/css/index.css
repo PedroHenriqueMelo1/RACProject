@@ -1,0 +1,99 @@
+* { 
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+.red {
+    color: red;
+}
+
+body {
+    width: 100vw;
+    background-color: #1c1c1c;
+   
+}
+
+
+.white {
+    color: white;
+}
+
+.registerbox {
+    background-color: white;
+    border-radius: 16px;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.imglogo {
+    width: 20%;
+ }
+
+ .logo {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .Inputs {
+    margin-top: 15px;
+    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-inline: auto;
+ }
+
+ .input {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1.8px solid black;
+ }
+
+ .title {
+    margin-top: 10px;
+    text-align: center;
+ }
+
+ .ButtonLogin {
+   color: white;  
+   background-color: #ff3131;
+   border: none;
+   border-radius: 16px;
+   padding: 18px;
+   width: 45%;
+    font-weight: 600;
+ }
+
+ .LosePass {
+    color: #ff3131;
+    text-decoration: none;
+ }
+
+ .LosePassword {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .LoginButtonBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 45px;
+ }
+ 
+@media(max-width: 768px) {
+ .title {
+  font-size: clamp(21px, 3vw, 24px);
+ }
+}
