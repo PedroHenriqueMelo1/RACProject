@@ -4,7 +4,7 @@ const App = express()
 const path = require('path')
 
 
-const FilePath = path.join(__dirname, '..', '..', '..', 'public', 'AlffaUi', 'index.html')
+const FilePath = path.join(__dirname, '..', '..', '..', '..', 'public', 'AlffaSystem', 'AlffaUi', 'index.html')
 
 
 

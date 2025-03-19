@@ -12,6 +12,8 @@ const CreateTokenEndpoint = require('./routes/EndPointDataBases/Onboarding/Creat
 const DeleteTokenEndpoint = require('./routes/EndPointDataBases/Onboarding/DeleteToken')
 const ViewLandingPage = require('./routes/StaticRoutes/MultiplicarLandingPage')
 const AlffaUi = require('./routes/StaticRoutes/Alffa/uiEndPoint')
+const AlffaUnidades = require('./routes/StaticRoutes/Alffa/AlffaUnidade')
+
 
 function InsertRoutesOnServer(Server) {
    Server.use('/endpoint/db/user', MethodGetDatabaseEndPoint)
@@ -34,6 +36,7 @@ function InsertRoutesOnServer(Server) {
 
 function InsertAlffaRoutesOnServer(Server) {
    Server.use('/AlffaUi', AlffaUi)
+   Server.use('/Alffa/Unidades', AlffaUnidades)
 }
 
 module.exports = InsertRoutesOnServer
