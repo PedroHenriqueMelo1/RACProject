@@ -11,9 +11,9 @@ const ViewAdmissaoUsers = require('./routes/EndPointDataBases/Onboarding/View')
 const CreateTokenEndpoint = require('./routes/EndPointDataBases/Onboarding/CreateToken')
 const DeleteTokenEndpoint = require('./routes/EndPointDataBases/Onboarding/DeleteToken')
 const ViewLandingPage = require('./routes/StaticRoutes/MultiplicarLandingPage')
-const AlffaUi = require('./routes/StaticRoutes/Alffa/uiEndPoint')
-const AlffaUnidades = require('./routes/StaticRoutes/Alffa/AlffaUnidade')
-
+const AlffaUnidade = require('./routes/StaticRoutes/Alffa/AlffaUnidade')
+const AlffaLogin = require('./routes/StaticRoutes/Alffa/AlffaLogin')
+const verifyJWT = require('../Controller/Middleware/Jwt/JwtGen')
 
 function InsertRoutesOnServer(Server) {
    Server.use('/endpoint/db/user', MethodGetDatabaseEndPoint)
@@ -28,15 +28,17 @@ function InsertRoutesOnServer(Server) {
    Server.use('/endpoint/db/onboarding/', CreateTokenEndpoint),
    Server.use('/endpoint/db/onboarding',  DeleteTokenEndpoint)
    Server.use('/MultiplicarLandingPage', ViewLandingPage)
-   
+
 
    InsertAlffaRoutesOnServer(Server)
 
 }
 
 function InsertAlffaRoutesOnServer(Server) {
-   Server.use('/AlffaUi', AlffaUi)
-   Server.use('/Alffa/Unidades', AlffaUnidades)
+
+   Server.use('/Alffa/Unidade',verifyJWT, AlffaUnidade)
+   Server.use('/Alffa/Login', AlffaLogin)
+
 }
 
 module.exports = InsertRoutesOnServer

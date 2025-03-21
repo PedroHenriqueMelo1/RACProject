@@ -131,12 +131,14 @@ const sqlite3 = require('sqlite3').verbose();
             async function Query(email) {
             
                    return new Promise((resolve, reject) => {
+               
                        Database.get('SELECT * From users WHERE (email) = ?', [email] , (err, row)  => {
                                     console.log(row || 'nada')
                                if(err) {
                                    reject({error: true, reason: 'ErrorQuery', status: 500, details: err})
                                } else {
                                    if(row == null) {
+                                  
                                        resolve({error: false, reason: 'UserNotFound', query: 'false'})
                                    } else {
                                        resolve({error: false, reason: 'UserFound', query: 'true'})
@@ -180,6 +182,7 @@ const sqlite3 = require('sqlite3').verbose();
         return new Promise((resolve, reject) => {
             try {
                 Database.get(`SELECT * FROM users WHERE (email,password) = (?,?)`, [Credentials.Email, Credentials.Password], (err, row) => {
+
                     if(err) {
                         reject({error: true, reason: 'ServerError', status: 500})
     
@@ -187,7 +190,7 @@ const sqlite3 = require('sqlite3').verbose();
                         if(row == null) {
                             resolve({error: false, reason: 'UserNotFound', status: 209})
                         }              else {
-                            resolve({error: false, reason: 'UserFound', status: 200})
+                            resolve({error: false, reason: 'UserFound', status: 200, role: row.cargo})
                         }
                 })
             }

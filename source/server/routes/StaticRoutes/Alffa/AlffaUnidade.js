@@ -1,16 +1,10 @@
-const express = require('express') 
+const express = require('express')
 const App = express()
-const path = require('path')
+const VerifyJwt = require('../../../../Controller/Middleware/CheckTokenBeforeAcessAdmissao')
 
 
-const AlffaUi = path.join(__dirname, '..', '..', '..', '..', 'public', 'AlffaSystem', 'AlffaUnidade', 'PerfisDeAcessoComponentes', 'UsuarioComum.html')
-
-
-
-
-App.get('', (req, response) => {
-    response.sendFile(AlffaUi)
-
-} )
+App.get('/', (request, response) => {
+  response.send('Olá 1320312')
+})
 
 module.exports = App

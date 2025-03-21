@@ -4,7 +4,9 @@ const MessageSystem = require('../Controller/ControllReturn')
 const PORT = 3333
 const InsertRoutesOnServer = require('./Router')
 const path = require('path')
+const cookie = require('cookie-parser')
 
+App.use(cookie())
 
 App.use(Express.json());
 
