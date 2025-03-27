@@ -4,11 +4,12 @@ const jwt = require('jsonwebtoken');
 const secretKey = 'TESTE'; // Troque por algo mais seguro
 
 // Função para gerar o JWT com base no role
-const generateJWT = (role) => {
-  const payload = { role }; // O payload inclui o role
+const generateJWT = (role, email) => {
+  const payload = { role, email }; // O payload inclui o role
+  
 
   // Gerando o token JWT com o payload e expirando em 1 hora
-  const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign(payload, secretKey, { expiresIn: '2d' });
 
   return token;
 };

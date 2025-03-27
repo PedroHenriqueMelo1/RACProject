@@ -113,4 +113,23 @@ window.onload = function() {
             }
         }
     });
+
+
+
+    const UserData = localStorage.getItem('auth')
+
+    async function Requests() {
+        const RequestMail = await fetch(`/endpoint/ReturnUsersDetailByJwt?token=${UserData}`)
+
+        const JSON = await RequestMail.json()
+
+        console.log(JSON)
+    }
+
+    Requests()
+
+   
+
+    console.log(UserData)
 }
+

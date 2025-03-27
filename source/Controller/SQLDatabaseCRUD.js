@@ -181,17 +181,23 @@ const sqlite3 = require('sqlite3').verbose();
 
         return new Promise((resolve, reject) => {
             try {
-                Database.get(`SELECT * FROM users WHERE (email,password) = (?,?)`, [Credentials.Email, Credentials.Password], (err, row) => {
+                console.log(Credentials)
+              
+                Database.get(`SELECT * FROM users WHERE (email,senha) = (?, ?)`, [Credentials.Email, Credentials.Password], (err, row) => {
+
 
                     if(err) {
                         reject({error: true, reason: 'ServerError', status: 500})
     
                     }
+                    
+
                         if(row == null) {
+                            console.log(`LINHA VAZIO RETORNO ESPERAOD USERNOTFOUND`)
                             resolve({error: false, reason: 'UserNotFound', status: 209})
-                        }              else {
-                            resolve({error: false, reason: 'UserFound', status: 200, role: row.cargo})
-                        }
+                        }              else {   
+                            resolve({error: false, reason: 'UserFound', status: 200, role: row.cargo, email: row.email})
+                        } 
                 })
             }
             catch(err) {

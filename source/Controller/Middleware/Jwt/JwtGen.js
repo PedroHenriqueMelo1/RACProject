@@ -26,6 +26,7 @@ function verifyJWT(req, res, next) {
         }
         
    
+        console.log(decoded)
     
         // Se o token for válido, guarda as informações do usuário (payload) no req.user
         req.user = decoded;

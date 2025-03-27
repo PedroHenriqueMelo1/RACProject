@@ -29,21 +29,31 @@ const ButtonEngine = async () => {
 
     const AnasilysQuery = await QueryUser.json()
 
-    function TrateQuery(Res)  {
-        console.log(Res)
+    function TrateQuery(Response)  {
 
-        if(Res.error !== false) {
-            alert(`Erro na requisição, tente novamente.`)
-            return
-        }
-      if(Res.reason !== 'UserFound') {
+      const InObj =  Response.Response
 
-     
-     return   alert('Usuário não encontrado!')
-      } 
-  
+
+
+      if(InObj.error !== false) {
+      return  alert(`Erro na requisição!`)
+      }
+
        
-      
+      if(InObj.reason !== 'UserFound')  
+
+        {
+          return alert(`Registro não encontrado, tente novamente!`)
+        }
+
+  
+
+        window.localStorage.setItem('auth', InObj.jwt)
+
+        
+       window.location.href = '/Alffa/Unidade';
+
+       
     } 
 
     TrateQuery(AnasilysQuery)
@@ -52,3 +62,4 @@ const ButtonEngine = async () => {
 }
 
 export default ButtonEngine;
+     
